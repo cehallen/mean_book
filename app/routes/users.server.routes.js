@@ -6,7 +6,7 @@ module.exports = function(app) {
         .get(users.list);
 
     app.route('/users/:userID')
-        .get(users.read);
+        .get(users.read)
         .put(users.update);
 
     app.param('userID', users.userByID);
