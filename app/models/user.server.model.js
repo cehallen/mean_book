@@ -33,6 +33,10 @@ var UserSchema = new Schema({
     }
 });
 
+UserSchema.methods.authenticate = function(password) {
+    return this.password === password;
+};
+
 UserSchema.statics.findOneByUsername = function (username, callback) {
     this.findOne({ username: new RegExp(username, 'i') }, callback);    
 };
