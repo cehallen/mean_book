@@ -1,6 +1,9 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+// ***************************
+// User Model
+// ***************************
 var UserSchema = new Schema({
     firstName: String,
     lastName: String,
@@ -65,4 +68,27 @@ UserSchema.virtual('fullName').get(function() {
 
 UserSchema.set('toJSON', { getters: true, virtuals: true });
 
+// *******************************
+// Post Schema
+// *******************************
+
+var PostSchema = new Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    }
+});
+
+// end
+
+
 mongoose.model('User', UserSchema);
+mongoose.model('Post', PostSchema);
